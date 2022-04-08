@@ -102,5 +102,51 @@ console.log(obj2);
     //ES 6
     let listofnames2 = names.map(item => console.log(item.name));
 
+    const listofnames3 = (names.name, names.age) => {console.log("mi nombre y mi edad es: " names.name + " " + names.age )}; //NO RESULTA ASÍ
+
+    const DOBLE = numero => numero * numero;
+
 
 }
+
+//PROMESAS
+
+const hellopromise = () => {
+    return new Promise((resolve, reject) => {
+        if (false) {
+            resolve('Hey!');
+        } else {
+            reject('Ups!');
+        }
+
+    });
+}
+
+hellopromise()
+    .then(response => console.log(response))
+    .then(() => console.log('Hola'))
+    .catch(error => console.log(error));
+
+// CLASES
+
+class calculator {
+    constructor() {
+        this.valueA = 0;
+        this.valueB = 0;
+    }
+
+    sum(valueA, valueB) {
+        this.valueA = valueA;
+        this.valueB = valueB;
+        return this.valueA + this.valueB;
+    }
+}
+
+const calc = new calculator();
+console.log(calc.sum(6,3));
+
+// IMPORTAR MODULOS
+import { hello } from './modulo';
+
+hello();
+ 
