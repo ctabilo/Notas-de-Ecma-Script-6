@@ -143,10 +143,175 @@ class calculator {
 }
 
 const calc = new calculator();
-console.log(calc.sum(6,3));
+console.log(calc.sum(6,1000000));
 
 // IMPORTAR MODULOS
 import { hello } from './modulo';
 
 hello();
- 
+
+//GENERADORES / funcion especial que retorna valores segun el algoritmo definido
+
+function* helloworld() {
+// el asterisco es para indicar que la funcion es un generador
+    if (true) {
+        yield 'hello, ';
+    }
+    if (true) {
+        yield 'world';
+    }
+
+};
+
+const generatorHello = helloworld();
+console.log(generatorHello.next().value); //llama el primer valor
+console.log(generatorHello.next().value); //llama el segundo valor
+console.log(generatorHello.next().value); // llama un tercer valor que no existe y por eso el resultado es undefined
+
+
+//ES7
+
+//INCLUDES
+
+let numbers = [1,2,3,4,5,6,7,8];
+if (numbers.includes(7)) {
+    console.log('Si se encuentra el valor 7');
+} else {
+    console.log('No se encuentra el valor 7');
+}
+
+// eleva a la potencia
+
+let base = 4;
+let exponente = 3;
+let result = base ** exponente;
+console.log(result);
+
+
+//ES8
+
+//objetct.entries extrae los datos dentro de una matriz
+
+const data = {
+    frontend: 'Oscar',
+    backend: 'Isabel',
+    design: 'Ana'
+}
+
+let entries = Object.entries(data);
+console.log(entries);
+console.log(entries.length);
+
+// //resultado
+// [ [ 'frontend', 'Oscar' ],
+//   [ 'backend', 'Isabel' ],
+//   [ 'design', 'Ana' ] ]
+// 3
+
+
+// OBJECT.VALUES
+const data = {
+    frontend: 'Oscar',
+    backend: 'Isabel',
+    design: 'Ana'
+}
+
+const values = Object.values(data);
+console.log(values);
+
+// resultado: [ 'Oscar', 'Isabel', 'Ana' ]
+
+//PADDING / sirve para rellenar adelante o atras del texto con los caracteres seleccionados y la cantidad elegida
+
+const string = 'helo';
+console.log(string.padStart(10, 'hi '));
+console.log(string.padEnd(12, '##**'));
+
+// RESULTADO
+// hi hi helo
+// helo##**##**
+
+//ASYNC Y AWAIT 
+
+const helloworld = () => {
+    return new Promise((resolve, reject) => {
+        (false)
+        ? setTimeout(() => resolve('Hello World'), 3000)
+        : reject(new Error('Test Error'))
+    })
+};
+
+const helloAsync = async () => {
+    const hello = await helloworld();
+    console.log(hello);
+}
+
+helloAsync();
+
+const anotherfunction = async () => {
+    try {
+        const hello = await helloworld();
+        console.log(hello);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+anotherfunction();
+
+// Async Await
+const prepareIceCream = (money) => {
+    return new Promise((resolve, reject) => {
+        if(money >= 500) {    
+            console.log('We are preparing your Ice cream...')
+            setTimeout(() => {
+                resolve('Here you are a Chocolate Ice cream');
+            }, 6000);  //3. Si el dinero que ingresaste es mayor o igual a 500, entonces te preparamos el helado. El proceso toma 6 segundos.
+        } else {
+            reject('Sorry! You do not have enough money :('); //3. Si el dinero es menor a 500, lo sentimos, no te alcanza
+        }
+    });
+}
+
+const buyIceCream = async (money) => { 
+    try{
+        console.log('Welcome to Ice Cream World!');
+        const result = await prepareIceCream(money); //2. Esperas aquí mientras envíamos el dinero, lo verifican y te preparan el helado 
+        console.log(result); //4. Imprimimos tu pedido! si todo salió bien.
+        console.log('Thanks for your purchase!');
+    } catch(e) {
+        console.log(e); //4. Te decimos que no salió bien el proceso porque tu dinero no es suficiente.
+    }
+}
+
+buyIceCream(500); //1. llamas a la funcion comprar helado e Ingresas el dinero
+
+
+// ES9
+
+//operador de reposo
+
+const obj = {
+    name: 'Cristian',
+    age: 39,
+    country: 'CL'    
+};
+
+// let {name, ...all} = obj;  //estrae los otros valores de un objeto
+// console.log(all);
+
+let {country, ...all} = obj;
+console.log(all);
+
+const obj = {
+    name: 'Cristian',
+    age: 39,
+};
+
+const obj1 = {
+    ...obj,
+    country: 'CL',
+};
+
+console.log(obj1);
+
